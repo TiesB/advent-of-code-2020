@@ -1,6 +1,6 @@
 import { Day } from "../core/day";
 
-export default class Day3 extends Day<string> {
+export default class Day3 implements Day<string> {
   parseLine(line: string): string {
     return line;
   }

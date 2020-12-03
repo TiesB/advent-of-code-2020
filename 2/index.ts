@@ -10,7 +10,7 @@ type input = {
 
 const regex = /(\d+?)-(\d+?) (\w): (\w*)/;
 
-export default class Day2 extends Day<input> {
+export default class Day2 implements Day<input> {
   parseLine(line: string): input {
     const match = regex.exec(line);
     if (match) {

@@ -1,5 +1,5 @@
-export abstract class Day<T> {
-  abstract parseLine(line: string): T;
-  abstract solve1(input: T[]): number;
-  abstract solve2(input: T[]): number;
+export interface Day<T> {
+  parseLine(line: string): T;
+  solve1(input: T[]): number;
+  solve2(input: T[]): number;
 }
