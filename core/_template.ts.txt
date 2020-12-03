@@ -1,0 +1,15 @@
+import { Day } from "../core/day";
+
+export default class Day__day__ extends Day<number> {
+    parseLine(line: string): number {
+        return Number(line);
+    }
+
+    solve1(input: number[]): number {
+        return -1;
+    }
+
+    solve2(input: number[]): number {
+        return -1;
+    }
+}
