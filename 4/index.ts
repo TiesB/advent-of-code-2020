@@ -9,7 +9,6 @@ type Passport = {
   ecl: string;
   pid: string;
   cid: number;
-  lines: string[];
 };
 
 const numberParts = ["byr", "iyr", "eyr", "cid"];
@@ -31,9 +30,6 @@ export default class Day4 implements Day<Partial<Passport>> {
         ? Number(parts[1])
         : parts[1];
     }
-    if (this.currentPassport.lines === undefined)
-      this.currentPassport.lines = [];
-    this.currentPassport.lines.push(line);
     return undefined;
   };
 
