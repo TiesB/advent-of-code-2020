@@ -1,4 +1,3 @@
-import * as fs from "fs";
 import { Day } from "../core/day";
 
 type input = {
