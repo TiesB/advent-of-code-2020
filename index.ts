@@ -26,7 +26,9 @@ for (const day of days) {
   const dayInstance = new dayClass();
 
   const lines = fs.readFileSync(`./${day}/input.txt`, "utf8").split("\n");
-  const input = lines.map(dayInstance.parseLine);
+  const input = dayInstance.filterInput
+    ? dayInstance.filterInput(lines.map(dayInstance.parseLine))
+    : lines.map(dayInstance.parseLine);
   console.log(
     `Day ${day}:\n\t1: ${dayInstance.solve1(input)}\n\t2: ${dayInstance.solve2(
       input

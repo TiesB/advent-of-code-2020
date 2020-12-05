@@ -5,6 +5,10 @@ export default class Day__day__ implements Day<number> {
         return Number(line);
     }
 
+    filterInput(input: number[]): number[] {
+        return input;
+    }
+
     solve1(input: number[]): number {
         return -1;
     }

@@ -18,16 +18,16 @@ export default class Day5 implements Day<BoardingPass> {
     return { row, column, id: row * 8 + column };
   }
 
+  filterInput(input: BoardingPass[]): BoardingPass[] {
+    return input.filter((bp) => !Number.isNaN(bp.id));
+  }
+
   solve1(input: BoardingPass[]): number {
-    return Math.max(
-      ...input.filter((bp) => Number.isInteger(bp.id)).map((bp) => bp.id)
-    );
+    return Math.max(...input.map((bp) => bp.id));
   }
 
   solve2(input: BoardingPass[]): number {
-    const ids = input
-      .filter((bp) => Number.isInteger(bp.id))
-      .map((bp) => bp.id);
+    const ids = input.map((bp) => bp.id);
     for (let i = Math.min(...ids); i <= Math.max(...ids); i++) {
       if (!ids.includes(i)) return i;
     }
