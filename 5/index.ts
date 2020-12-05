@@ -28,7 +28,7 @@ export default class Day5 implements Day<BoardingPass> {
     const ids = input
       .filter((bp) => Number.isInteger(bp.id))
       .map((bp) => bp.id);
-    for (let i = 100; i <= Math.max(...ids); i++) {
+    for (let i = Math.min(...ids); i <= Math.max(...ids); i++) {
       if (!ids.includes(i)) return i;
     }
 
