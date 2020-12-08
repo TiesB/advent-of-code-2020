@@ -6,15 +6,15 @@ type Instruction = {
 };
 
 function run(program: Instruction[]): { hasLoop: boolean; acc: number } {
-  const visited = [];
+  const visited: Set<number> = new Set();
   let acc = 0;
   let hasLoop = false;
   for (let i = 0; i < program.length; ) {
-    if (visited.includes(i)) {
+    if (visited.has(i)) {
       hasLoop = true;
       break;
     }
-    visited.push(i);
+    visited.add(i);
     const instruction = program[i];
 
     if (instruction.op === "jmp") {
@@ -50,24 +50,16 @@ export default class Day8 implements Day<Instruction> {
 
   solve2(input: Instruction[]): number {
     for (let i = 0; i < input.length; i++) {
-      let changed = false;
-      if (input[i].op === "jmp") {
-        input[i].op = "nop";
-        changed = true;
-      } else if (input[i].op === "nop") {
-        input[i].op = "jmp";
-        changed = true;
-      }
+      const oldOp = input[i].op;
+
+      if (oldOp === "acc") continue;
+
+      input[i].op = oldOp === "jmp" ? "nop" : "jmp";
+
       const r = run(input);
       if (!r.hasLoop) return r.acc;
 
-      if (changed) {
-        if (input[i].op === "nop") {
-          input[i].op = "jmp";
-        } else if (input[i].op === "jmp") {
-          input[i].op = "nop";
-        }
-      }
+      input[i].op = oldOp;
     }
     return -1;
   }
