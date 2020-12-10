@@ -14,7 +14,7 @@ export default class Day10 implements Day<number> {
   solve1(input: number[]): number {
     let current = 0;
     let oneSteps = 0;
-    let threeSteps = 1;
+    let threeSteps = 1; // Include step to device adapter
     while (input.length) {
       const next = Math.min(...input.filter((i) => i > current));
       input.splice(input.indexOf(next), 1);
@@ -42,15 +42,14 @@ export default class Day10 implements Day<number> {
         (j) => j > numbers[i] && j <= numbers[i] + 3
       );
 
-      let sum = 0;
-      for (let j = possibilities.length - 1; j >= 0; j--) {
-        sum += r.get(numbers.indexOf(possibilities[j]));
-      }
-
-      r.set(i, sum);
+      r.set(
+        i,
+        possibilities.reduce((a, b) => a + r.get(numbers.indexOf(b)), 0)
+      );
     }
 
     return numbers
+      .slice(0, 3)
       .filter((j) => j > 0 && j <= 3)
       .reduce((a, b) => a + r.get(numbers.indexOf(b)), 0);
   };
