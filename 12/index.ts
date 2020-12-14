@@ -99,13 +99,11 @@ export default class Day12 implements Day<Instruction> {
         default:
           console.log("Unknown instruction", i);
       }
-      // console.log(i, pos, dir);
     }
     return Math.abs(pos.north) + Math.abs(pos.east);
   }
 
   solve2(input: Instruction[]): number {
-    console.log(input.filter((i) => i.action === "R").map((i) => i.arg));
     let shipPos = { north: 0, east: 0 };
     let wpPos = { north: 1, east: 10 };
 

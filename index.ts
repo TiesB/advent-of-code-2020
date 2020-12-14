@@ -31,11 +31,11 @@ async function bootstrap() {
 
     const lines = fs.readFileSync(`./${day}/input.txt`, "utf8").split("\n");
     console.log(
-      `Day ${day}:\n\t1: ${dayInstance.solve1(
+      `Day ${day}:\n\t1: ${await dayInstance.solve1(
         dayInstance.filterInput
           ? dayInstance.filterInput(lines.map(dayInstance.parseLine))
           : lines.map(dayInstance.parseLine)
-      )}\n\t2: ${dayInstance.solve2(
+      )}\n\t2: ${await dayInstance.solve2(
         dayInstance.filterInput
           ? dayInstance.filterInput(lines.map(dayInstance.parseLine))
           : lines.map(dayInstance.parseLine)
