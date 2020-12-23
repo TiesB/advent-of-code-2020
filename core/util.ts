@@ -10,13 +10,15 @@ export async function generateDay(day: number): Promise<void> {
   fs.mkdirSync(`./${day}`);
   fs.writeFileSync(
     `./${day}/input.txt`,
-    (
-      await axios.get(`https://adventofcode.com/2020/day/${day}/input`, {
-        headers: {
-          Cookie: `session=${process.env.SESSION_COOKIE}`,
-        },
-      })
-    ).data
+    String(
+      (
+        await axios.get(`https://adventofcode.com/2020/day/${day}/input`, {
+          headers: {
+            Cookie: `session=${process.env.SESSION_COOKIE}`,
+          },
+        })
+      ).data
+    )
   );
   const template = fs.readFileSync("./core/_template.ts.txt", "utf-8");
   const output = template.replace("__day__", String(day));
